@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>눌구비감귤 시즌9 알리기</title>
+<meta property="og:title" content="눌구비감귤 시즌9, 11월 28일 시작!">
+<meta property="og:description" content="시즌 소식은 눌구비감귤 채널에서 알려드려요.">
+<meta property="og:image" content="season9.png">
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.5/kakao.min.js"
+  integrity="sha384-v6JKY3z4FUkWq21oZDHZe74YvuPk/WUrVLrDHTBojHXClOSa3iXy7sCXPY1jkFbj"
+  crossorigin="anonymous"></script>
+<style>
+  :root{--orange:#f28c28;--text:#2b2118;--muted:#7a6a5c;--bg:#fff8f0;--line:#eadfd3}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+  .wrap{max-width:480px;margin:0 auto;padding:20px 16px 40px;text-align:center}
+  h1{font-size:22px;margin:6px 0 4px}
+  p{color:var(--muted);font-size:15px;line-height:1.6;margin:8px 0}
+  img{width:100%;border-radius:16px;border:1px solid var(--line);margin-top:14px;display:block}
+  .btn{display:block;width:100%;margin-top:14px;padding:16px;border:0;border-radius:14px;font-size:17px;font-weight:700;cursor:pointer;text-decoration:none;font-family:inherit}
+  .kakao{background:#fee500;color:#191600}
+  .line{background:#fff;color:#c96612;border:2px solid var(--orange)}
+  .note{font-size:13px;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🍊 눌구비감귤 시즌9</h1>
+  <p>11월 28일 시작합니다.<br>감귤 좋아하는 분께 알려 주세요!</p>
+  <img src="season9.png" alt="눌구비감귤 시즌9, 11월 28일 시작">
+  <button class="btn kakao" id="shareBtn" type="button">💬 카카오톡으로 친구에게 보내기</button>
+  <a class="btn line" href="go.html">➕ 눌구비감귤 채널 추가하기</a>
+  <p class="note">버튼을 누르면 카카오톡이 열리고, 보낼 친구를 고를 수 있습니다.</p>
+</div>
+
+<script>
+/* ▼▼▼ 카카오 개발자 사이트에서 받은 JavaScript 키를 따옴표 안에 붙여넣으세요 ▼▼▼ */
+const KAKAO_JS_KEY = '여기에_JavaScript_키_붙여넣기';
+/* ▲▲▲ 이 줄 말고는 고칠 필요가 없습니다 ▲▲▲ */
+
+// 이 페이지가 올라간 주소를 기준으로 이미지·링크 주소를 자동으로 만듦
+const BASE = location.href.split(/[?#]/)[0].replace(/[^/]*$/, '');
+const LINK = BASE + 'go.html';
+
+function ready() {
+  if (!window.Kakao) { alert('카카오 기능을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.'); return false; }
+  if (!KAKAO_JS_KEY || KAKAO_JS_KEY.indexOf('여기에') === 0) { alert('index.html에 카카오 JavaScript 키를 아직 넣지 않았습니다.'); return false; }
+  if (!Kakao.isInitialized()) Kakao.init(KAKAO_JS_KEY);
+  return true;
+}
+
+document.getElementById('shareBtn').onclick = () => {
+  if (!ready()) return;
+  Kakao.Share.sendDefault({
+    objectType: 'feed',
+    content: {
+      title: '🍊 눌구비감귤 시즌9, 11월 28일 시작!',
+      description: '시즌 소식은 눌구비감귤 채널에서 알려드려요. 아래 버튼을 눌러 채널을 추가해 주세요.',
+      imageUrl: BASE + 'season9.png',
+      imageWidth: 1080,
+      imageHeight: 1080,
+      link: { mobileWebUrl: LINK, webUrl: LINK }
+    },
+    buttons: [
+      { title: '채널 추가하기', link: { mobileWebUrl: LINK, webUrl: LINK } }
+    ]
+  });
+};
+</script>
+</body>
+</html>
